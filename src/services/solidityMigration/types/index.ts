@@ -4,6 +4,7 @@
 export interface ISolidityGenrator {
     name: string
     symbol: string
+    limited: number
     contractFunctionality: IContractFunctionality[]
 }
 
