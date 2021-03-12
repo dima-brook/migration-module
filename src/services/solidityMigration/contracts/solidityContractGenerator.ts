@@ -1,3 +1,4 @@
+import { NFT_CREATION_LIMIT_REACHED } from '../../../errors/solidityErrors'
 import { ISolidityGenrator } from '../types'
 // solidity contract generation
 export default (solidityGenerator: ISolidityGenrator) => {
@@ -26,8 +27,7 @@ contract ${name} is ERC721 {
 }
 
 // limit the creation of nft
-const NFTLimit = (limited: number) => `uint256 public limited = ${limited};
-`
+const NFTLimit = (limited: number) => `uint256 public limited = ${limited};`
 
 // mint nft function
 const mint = (solidityGenerator: ISolidityGenrator) => {
@@ -35,12 +35,14 @@ const mint = (solidityGenerator: ISolidityGenrator) => {
         limited,
         limitedMessage
     } = solidityGenerator
+
+    // limited message
+    const lMsg = limitedMessage ? limitedMessage : NFT_CREATION_LIMIT_REACHED
     return `
     mint(string memory _uri) public {
-        ${limited ? `require(count < limited, '${limitedMessage}');` : ''}
+        ${limited ? `require(count < limited, '${lMsg}');` : ''}
         count ++;
         tokenURIs[count] = _uri;
         _mint(msg.sender, count);   
-    }    
-`
+    }`
 }

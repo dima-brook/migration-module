@@ -10,7 +10,6 @@ export interface IMigrator {
 // Instance methods
 export interface IMigratorDocument extends IMigrator, Document {
     toJSON();
-    used: boolean
 }
 
 

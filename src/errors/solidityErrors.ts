@@ -1,0 +1,1 @@
+export const NFT_CREATION_LIMIT_REACHED = 'Limit of creation was reached.'
