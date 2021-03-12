@@ -12,4 +12,6 @@ export const MONGO_COLLECTIONS = {
     RefreshTokens: 'RefreshTokens'.toLowerCase(),
     PasswordResets: 'PasswordResets'.toLowerCase(),
 
+    Migrators: 'Migrators'.toLowerCase(),
+
 }

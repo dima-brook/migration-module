@@ -13,6 +13,7 @@ const createNFT = (solidityGenerator: ISolidityGenrator) => {
     return `pragma solidity ^0.8.0;
     
 import "./openZeppelin/ERC721.sol";
+
 contract ${name} is ERC721 {
     ${NFTLimit(limited)}
     uint256 public count = 0;
@@ -28,6 +29,7 @@ contract ${name} is ERC721 {
 const NFTLimit = (limited: number) => `uint256 public limited = ${limited};
 `
 
+// mint nft function
 const mint = (solidityGenerator: ISolidityGenrator) => {
     const { 
         limited,
@@ -36,9 +38,9 @@ const mint = (solidityGenerator: ISolidityGenrator) => {
     return `
     mint(string memory _uri) public {
         ${limited ? `require(count < limited, '${limitedMessage}');` : ''}
+        count ++;
         tokenURIs[count] = _uri;
         _mint(msg.sender, count);   
-        count ++;
     }    
 `
 }

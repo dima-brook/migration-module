@@ -1,8 +1,19 @@
-import { ISolidityGenrator } from "./types";
+import * as fs from 'fs'
+
+import { ISolidityGenrator } from './types'
 
 export class SolidityMigration {
     
-    async generateContract(solidityGenerator: ISolidityGenrator) {
+    migrate(solidityGenerator: ISolidityGenrator) {
+        const nft = this.generateNFTContract(solidityGenerator)
+
+    }
+
+    generateNFTContract(solidityGenerator: ISolidityGenrator) {
+        
+    }
+
+    async createPackage() {
         
     }
 }
