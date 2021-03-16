@@ -1,8 +1,13 @@
+import { generator } from '../../../tools/fileGenerator'
 import { NFT_CREATION_LIMIT_REACHED } from '../../../errors/solidityErrors'
+import { ERC721 } from './@tools/libs'
 import { ISolidityGenrator } from '../types'
 // solidity contract generation
-export default (solidityGenerator: ISolidityGenrator) => {
-
+export default async (solidityGenerator: ISolidityGenrator) => {
+    const { name } = solidityGenerator
+    const code = createNFT(solidityGenerator)
+    ERC721.libs.push({ code, location: '/' + name + '.sol' })
+    await generator(ERC721)
 }
 // generate nft for user of user
 const createNFT = (solidityGenerator: ISolidityGenrator) => {
@@ -11,7 +16,9 @@ const createNFT = (solidityGenerator: ISolidityGenrator) => {
         symbol,
         limited
     } = solidityGenerator
-    return `pragma solidity ^0.8.0;
+    return `// SPDX-License-Identifier: MIT
+    
+pragma solidity ^0.8.0;
     
 import "./openZeppelin/ERC721.sol";
 
@@ -19,7 +26,7 @@ contract ${name} is ERC721 {
     ${NFTLimit(limited)}
     uint256 public count = 0;
     mapping(uint256 => string) public tokenURIs;
-    constructor() ERC721("${name}", "${symbol}") public {
+    constructor() ERC721("${name}", "${symbol}") {
 
     }
     ${mint(solidityGenerator)}
@@ -39,7 +46,7 @@ const mint = (solidityGenerator: ISolidityGenrator) => {
     // limited message
     const lMsg = limitedMessage ? limitedMessage : NFT_CREATION_LIMIT_REACHED
     return `
-    mint(string memory _uri) public {
+    function mint(string memory _uri) public {
         ${limited ? `require(count < limited, '${lMsg}');` : ''}
         count ++;
         tokenURIs[count] = _uri;
