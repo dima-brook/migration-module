@@ -25,6 +25,10 @@ export const generator = async (files: GeneratorConfig) => {
         const { code, location } = lib
         fs.writeFileSync(loc + location, code)
     }
-    const fileLocation = await ZIP.zip(loc)
-    return fileLocation
+    try {
+        const fileLocation = await ZIP.zip(loc)
+        return fileLocation
+    } catch (err) {
+        return false
+    }
 }

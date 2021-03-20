@@ -14,7 +14,7 @@ export class ZipService {
                 })
                 archive.on('error', function(err){
                     rej()
-                })//
+                })
                 archive.pipe(output)
                 archive.directory(location, false)
                 archive.finalize()
