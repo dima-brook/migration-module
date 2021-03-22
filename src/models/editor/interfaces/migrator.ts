@@ -4,6 +4,7 @@ import { IGenerator } from '../../../services/migrationService/types'
 
 export interface IMigrator {
     appId: ObjectId
+    index: number
     generator: IGenerator
 }
 

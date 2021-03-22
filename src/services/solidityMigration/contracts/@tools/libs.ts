@@ -7,6 +7,7 @@ import IERC721Metadata from '../openZeppelin/extensions/IERC721Metadata'
 import IERC721 from '../openZeppelin/IERC721'
 import ERC721Token from '../openZeppelin/ERC721'
 import IERC721Receiver from '../openZeppelin/IERC721Receiver'
+// contracts always on server - one source of truth
 export const ERC721 = {
     folders: [
         '/openZeppelin', 

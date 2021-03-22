@@ -6,6 +6,7 @@ import { CustomDocumentBuild } from '../../tools/mongodb/documentDefaults'
 
 export const docMigrator = {
     appId: { type: Schema.Types.ObjectId },
+    index: { type: Schema.Types.Number },
     generator: { type: Schema.Types.Mixed },
 }
 

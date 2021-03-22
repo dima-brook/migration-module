@@ -14,7 +14,7 @@ export class SolidityMigration {
         }
     }
 
-    async generateNFTContract(solidityGenerator: ISolidityGenrator) {
+    async generateNFTContract(solidityGenerator: ISolidityGenrator): Promise<string | undefined> {
         try {
             return await solidityContractGenerator(solidityGenerator)
         } catch(err) {

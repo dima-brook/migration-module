@@ -1,3 +1,4 @@
+// 
 export default `
 address 0x1 {
     module XPNetwork {
