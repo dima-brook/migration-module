@@ -1,19 +1,25 @@
 import * as fs from 'fs'
+import solidityContractGenerator from './contracts/solidityContractGenerator'
 
 import { ISolidityGenrator } from './types'
 
 export class SolidityMigration {
     
-    migrate(solidityGenerator: ISolidityGenrator) {
-        const nft = this.generateNFTContract(solidityGenerator)
-
+    async getNFTContract(solidityGenerator: ISolidityGenrator) {
+        try {
+            const nftZIP = await this.generateNFTContract(solidityGenerator)
+            return nftZIP
+        } catch(err) {
+            return undefined
+        }
     }
 
-    generateNFTContract(solidityGenerator: ISolidityGenrator) {
-        
+    async generateNFTContract(solidityGenerator: ISolidityGenrator) {
+        try {
+            return await solidityContractGenerator(solidityGenerator)
+        } catch(err) {
+            return undefined
+        }
     }
 
-    async createPackage() {
-        
-    }
 }

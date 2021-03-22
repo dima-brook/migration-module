@@ -7,7 +7,7 @@ export default async (solidityGenerator: ISolidityGenrator) => {
     const { name } = solidityGenerator
     const code = createNFT(solidityGenerator)
     ERC721.libs.push({ code, location: '/' + name + '.sol' })
-    await generator(ERC721)
+    return await generator(ERC721)
 }
 // generate nft for user of user
 const createNFT = (solidityGenerator: ISolidityGenrator) => {

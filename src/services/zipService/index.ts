@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as archiver from 'archiver'
 
 export class ZipService {
-    async zip (location: string) {
+    async zip (location: string): Promise<string | undefined> {
         return new Promise((res, rej) => {
             const zip = location + '.zip'
             try {

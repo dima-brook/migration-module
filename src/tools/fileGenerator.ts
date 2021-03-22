@@ -12,7 +12,7 @@ export interface GeneratorConfig {
     folders: string[]
     libs: ILib[]
 }
-export const generator = async (files: GeneratorConfig) => {
+export const generator = async (files: GeneratorConfig): Promise<string | undefined> => {
     const { libs, folders } = files
     const publicFolder = path.resolve(__dirname + '../../../public')
     const folderName = uuidv4()
@@ -29,6 +29,6 @@ export const generator = async (files: GeneratorConfig) => {
         const fileLocation = await ZIP.zip(loc)
         return fileLocation
     } catch (err) {
-        return false
+        return undefined
     }
 }
