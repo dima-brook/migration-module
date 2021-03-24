@@ -13,5 +13,6 @@ export const MONGO_COLLECTIONS = {
     PasswordResets: 'PasswordResets'.toLowerCase(),
 
     Migrators: 'Migrators'.toLowerCase(),
+    Apps: 'Apps'.toLowerCase(),
 
 }
