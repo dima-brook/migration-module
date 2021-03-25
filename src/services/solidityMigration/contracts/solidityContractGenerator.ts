@@ -13,7 +13,10 @@ export default async (solidityGenerator: ISolidityGenrator) => {
         return undefined
     }
 }
-// generate nft for user of user
+    /**
+     * @param solidityGenerator - Editor output
+     * @returns NFT contract
+     */
 const createNFT = (solidityGenerator: ISolidityGenrator) => {
     const {
         name,
@@ -37,7 +40,10 @@ contract ${name} is ERC721 {
 }`
 }
 
-// limit the creation of nft
+/**
+ * @param limited - Limited amount on the NFT token
+ * @returns line of solidity code for limited
+ */
 const NFTLimit = (limited: number) => `uint256 public limited = ${limited};`
 
 // mint nft function

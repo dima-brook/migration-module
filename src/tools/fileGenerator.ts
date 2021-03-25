@@ -12,6 +12,7 @@ export interface GeneratorConfig {
     folders: string[]
     libs: ILib[]
 }
+
 export const generator = async (files: GeneratorConfig): Promise<string | undefined> => {
     const { libs, folders } = files
     const publicFolder = path.resolve(__dirname + '../../../public')
