@@ -35,9 +35,6 @@ address 0x1 {
             let T {value} = check;
             coin.value = coin.value + value;
         }
-        public fun decimals<Coin>(): u8 acquires Details {
-            borrow_global<Details<Coin>>(0x1).decimals
-        }
         public fun check_token<Coin>(): bool acquires Details {
             borrow_global<Details<Coin>>(0x1).check_token
         }
