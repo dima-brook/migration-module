@@ -4,13 +4,14 @@ export default (solidityGenerator: ISolidityGenrator) => {
 
 }
 
-const nftStatus = (solidityGenerator: ISolidityGenrator) => {
+const marketplace = (solidityGenerator: ISolidityGenrator) => {
     const { name } = solidityGenerator
     return `import {${name}} from './${name}.sol';
 
     contract Marketplace {
         
-        event ${name}DataStatusChange(uint256 ad, bytes32 status);
+        event ${name}DataStatusChange(uint256 id, bytes32 status);
+        event ${name}DataPriceChange(uint256 id, uint256 price);
         
         struct Data {
             address owner;
@@ -53,6 +54,7 @@ const nftStatus = (solidityGenerator: ISolidityGenrator) => {
             require(_price > 0, 'price must be greater than 0');
             require(owner == msg.sender, 'owner can only be changed by owner');
             datas[_id].owner = msg.sender;
+            emit ${name}DataPriceChange(_id, _price);
         }
         
         function updateStatus(uint256 _id, bytes32 _status) private {
