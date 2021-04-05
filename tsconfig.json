@@ -1,6 +1,7 @@
 {
   "version": "2.4.2",
   "compilerOptions": {
+      "baseUrl": "./src",
       "lib": ["es5", "es6", "dom", "es2018"],
       "target": "es6",
       "module": "commonjs",
@@ -20,7 +21,8 @@
 
   },
   "include": [
-    "src/*.ts"
+    "src/*.ts",
+    "src/*.test.ts"
   ],
   "exclude": [
     "lib",

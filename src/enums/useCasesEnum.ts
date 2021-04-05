@@ -11,5 +11,5 @@
  */
 export function* UseCaseEnumSpread(){
     yield UseCaseEnum.MARKETPLACE;
-
+    
 }

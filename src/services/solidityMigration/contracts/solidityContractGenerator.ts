@@ -7,7 +7,7 @@ export default async (solidityGenerator: ISolidityGenrator) => {
     const { name, useCase } = solidityGenerator
     const code = await solidityNFTContract(solidityGenerator)
     let useCaseContract: string
-
+    return code
 }
 
 export const solidityUseCaseSwitch = async (solidityGenerator: ISolidityGenrator) => {
