@@ -9,6 +9,8 @@ export interface ISolidityGenrator {
     useCase: UseCaseEnum
     limited: number // enforce same standard
     limitedMessage: string
+    royalties?: number// activate royalties on the NFT - must be positive number
+    // represeting the % the creator receives. 10 == 10%
     adminMint?: boolean // users of dapp mint the tokens themselves or
     // admin mints the tokens
     contractFunctionality: IContractFunctionality[]
