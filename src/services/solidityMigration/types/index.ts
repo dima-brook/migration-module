@@ -19,4 +19,4 @@ export interface ISolidityGenrator {
 // singular functionality received from the application editor
 export interface IContractFunctionality {
 
-}
+}//
