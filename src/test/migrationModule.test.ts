@@ -1,22 +1,9 @@
 import { assert, expect } from 'chai'
-import { UseCaseEnum } from '../enums/useCasesEnum'
 import { MigrationModule } from '../services/migrationModule'
-import { IGenerator } from '../services/migrationModule/types'
 import { GeneratorConfig, ILib } from '../tools/fileGenerator'
-const generator: IGenerator = {
-    solidity: {
-        name: 'TestContract',
-        symbol: 'TEST',
-        useCase: UseCaseEnum.MARKETPLACE,
-        limited: 5,
-        limitedMessage: '',
-        royalties: 0,
-        adminMint: false,
-        contractFunctionality: []
-    }
-}
+import { testGenerator } from './testingVariables'
 
-const MIGRATION_MODULE = new MigrationModule(generator)
+const MIGRATION_MODULE = new MigrationModule(testGenerator)
 
 describe('Migration Module', async function() {
     it('Generates a solidity smart contract', async function() {

@@ -1,7 +1,7 @@
-import { generator } from '../../../tools/fileGenerator'
 import { NFT_CREATION_LIMIT_REACHED } from '../../../errors/solidityErrors'
-import { ERC721 } from './@tools/libs'
 import { ISolidityGenrator } from '../types'
+import { ERC721 } from './@tools/libs'
+
 // solidity contract generation
 export default async (solidityGenerator: ISolidityGenrator) => {
     const { name } = solidityGenerator
@@ -13,11 +13,12 @@ export default async (solidityGenerator: ISolidityGenrator) => {
         return undefined
     }
 }
-    /**
-     * @param solidityGenerator - Editor output
-     * @returns NFT contract
-     */
-const createNFT = (solidityGenerator: ISolidityGenrator) => {
+
+/**
+ * @param solidityGenerator - Editor output
+ * @returns NFT contract
+ */
+export const createNFT = (solidityGenerator: ISolidityGenrator) => {
     const {
         name,
         symbol,
