@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai'
 import { MigrationModule } from '../services/migrationModule'
 import { GeneratorConfig, ILib } from '../tools/fileGenerator'
-import { testGenerator } from './testingVariables'
+import { testGenerator } from './testingLets'
 
 const MIGRATION_MODULE = new MigrationModule(testGenerator)
 
