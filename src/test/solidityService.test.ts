@@ -2,10 +2,10 @@ import { expect } from 'chai'
 
 import { SolidityMigration } from '../services/solidityMigration'
 import { createNFT } from '../services/solidityMigration/contracts/solidityNFTContract'
-import { testGenerator } from './testingLets'
+import { STRING, testGenerator } from './testingLets'
 
 const checkNFTContract = (nftSmartContract: string) => {
-    expect(nftSmartContract).to.be.a('string')
+    expect(nftSmartContract).to.be.a(STRING)
     expect(nftSmartContract).to.include(solidity.name)
     expect(nftSmartContract).to.include(solidity.symbol)
 }
