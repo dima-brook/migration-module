@@ -2,7 +2,7 @@ import { ISolidityGenrator } from '../types'
 const MARKETPLACE_STATUS_OPEN = 'Open'
 const MARKETPLACE_STATUS_CLOSED = 'Closed'
 export default (solidityGenerator: ISolidityGenrator) => {
-
+    return marketplace(solidityGenerator)
 }
 
 const marketplace = (solidityGenerator: ISolidityGenrator) => {

@@ -14,3 +14,6 @@ let solidity: ISolidityGenrator = {
 }
 
 export let testGenerator: IGenerator = { solidity }
+
+export const ARRAY = 'array'
+export const STRING = 'string'

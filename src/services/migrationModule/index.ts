@@ -1,6 +1,6 @@
 import { SolidityMigration } from '../solidityMigration'
 import { IGenerator } from './types'
-const SOLIDITY_MIGRATION = new SolidityMigration()
+
 export class MigrationModule {
     generator: IGenerator
     constructor(generator: IGenerator) {
@@ -9,7 +9,8 @@ export class MigrationModule {
     
     async generateSolidityContracts() {
         const { solidity } = this.generator
-        const contracts = await SOLIDITY_MIGRATION.getNFTContract(solidity)
+        const SOLIDITY_MIGRATION = new SolidityMigration(solidity)
+        const contracts = await SOLIDITY_MIGRATION.getNFTContract()
         return contracts
     }
 }

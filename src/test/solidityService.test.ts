@@ -10,8 +10,9 @@ const checkNFTContract = (nftSmartContract: string) => {
     expect(nftSmartContract).to.include(solidity.symbol)
 }
 
-const SOLIDITY_MIGRATION = new SolidityMigration()
 const { solidity } = testGenerator
+const SOLIDITY_MIGRATION = new SolidityMigration(solidity)
+
 describe('Solidity Migration', async function() {
     it('Generates a limited solidity NFT smart contract', async function() {
         const nftSmartContract: string = createNFT(solidity)
