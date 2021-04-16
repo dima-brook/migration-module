@@ -6,7 +6,7 @@ import { ERC721 } from './@tools/libs'
 export default async (solidityGenerator: ISolidityGenrator) => {
     const { name } = solidityGenerator
     const code = createNFT(solidityGenerator)
-    ERC721.libs.push({ code, location: '/' + name + '.sol' })
+    ERC721.libs.push({ code, location: '/contracts/' + name + '.sol' })
     try {
         return ERC721
     } catch(err) {
@@ -39,6 +39,33 @@ contract ${name} is ERC721 {
     }
     ${mint(solidityGenerator)}
 }`
+}
+
+export const NFTTest = (solidityGenerator: ISolidityGenrator) => {
+    const {
+        name,
+        symbol,
+        adminMint
+    } = solidityGenerator
+    const testMint = `await testContract.mint(${adminMint ? 'verbal, ' : ''}'json-url')`
+    return `
+const { expect } = require('chai')
+const ${name} = artifacts.require('./${name}.sol')
+require('chai')
+    .use(require('chai-as-promised'))
+    .should()
+contract('${name}', async ([roger, verbal, kint]) => {
+    it('should deploy contract correctly', async () => {
+        let testContract = await ${name}.deployed( { from: roger })
+        const name = await testContract.name()
+        const symbol = await testContract.symbol()
+        expect(name).to.be.equal('${name}')
+        expect(symbol).to.be.equal('${symbol}')
+        ${testMint}
+        const ownerOfOne = await testContract.ownerOf(1)
+        expect(ownerOfOne).to.be.equal(${adminMint ? 'verbal' : 'roger'})
+    }) 
+})`
 }
 
 /**

@@ -1,6 +1,6 @@
 import { assert, expect } from 'chai'
 import { MigrationModule } from '../services/migrationModule'
-import { GeneratorConfig, ILib } from '../tools/fileGenerator'
+import { generator, GeneratorConfig, ILib } from '../tools/fileGenerator'
 import { ARRAY, STRING, testGenerator } from './testingLets'
 
 const MIGRATION_MODULE = new MigrationModule(testGenerator)
@@ -18,6 +18,7 @@ describe('Migration Module', async function() {
                 expect(n.code).to.be.a(STRING)
                 expect(n.location).to.be.a(STRING)
             })
+            generator(solidity)
         } else assert.fail()
     })
 })
