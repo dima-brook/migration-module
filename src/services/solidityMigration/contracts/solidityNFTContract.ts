@@ -50,21 +50,30 @@ export const NFTTest = (solidityGenerator: ISolidityGenrator) => {
     const testMint = `await testContract.mint(${adminMint ? 'verbal, ' : ''}'json-url')`
     return `
 const { expect } = require('chai')
+
 const ${name} = artifacts.require('./${name}.sol')
 require('chai')
     .use(require('chai-as-promised'))
     .should()
 contract('${name}', async ([roger, verbal, kint]) => {
-    it('should deploy contract correctly', async () => {
+    it('Deploys ${name}', async () => {
         let testContract = await ${name}.deployed( { from: roger })
         const name = await testContract.name()
         const symbol = await testContract.symbol()
+        const ownerOfOne = await testContract.ownerOf(1)
+        const tokenURI = await testContract.tokenURIs(1)
+        const id = await testContract.id()
+        const limited = await testContract.limited()
+
+        ${testMint}
+
+        expect(id).to.be.equal(1)
+        expect(limited).to.be.equal(5)
+        expect(tokenURI).to.be.equal('json-url')
+        expect(ownerOfOne).to.be.equal(${adminMint ? 'verbal' : 'kint'})
         expect(name).to.be.equal('${name}')
         expect(symbol).to.be.equal('${symbol}')
-        ${testMint}
-        const ownerOfOne = await testContract.ownerOf(1)
-        expect(ownerOfOne).to.be.equal(${adminMint ? 'verbal' : 'roger'})
-    }) 
+    })
 })`
 }
 
