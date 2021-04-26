@@ -5,8 +5,12 @@ import { ERC721 } from './@tools/libs'
 // solidity contract generation
 export default async (solidityGenerator: ISolidityGenrator) => {
     const { name } = solidityGenerator
-    const code = createNFT(solidityGenerator)
+    let code = createNFT(solidityGenerator)
     ERC721.libs.push({ code, location: '/contracts/' + name + '.sol' })
+    code = createNFTTest(solidityGenerator)
+    ERC721.libs.push({ code, location: '/test/' + name + '.js' })
+    code = createNFTMigration(solidityGenerator)
+    ERC721.libs.push({ code, location: '/migrations/' + '2_deploy_' + name + '.js' })
     try {
         return ERC721
     } catch(err) {
@@ -41,13 +45,19 @@ contract ${name} is ERC721 {
 }`
 }
 
-export const NFTTest = (solidityGenerator: ISolidityGenrator) => {
+/**
+ * @param solidityGenerator - Editor output
+ * @returns NFT contract test script
+ */
+export const createNFTTest = (solidityGenerator: ISolidityGenrator) => {
     const {
         name,
         symbol,
-        adminMint
+        adminMint,
+        limited
     } = solidityGenerator
     const testMint = `await testContract.mint(${adminMint ? 'verbal, ' : ''}'json-url')`
+    const expectLimited = `expect(limited).to.be.equal(${limited})`
     return `
 const { expect } = require('chai')
 
@@ -67,8 +77,8 @@ contract('${name}', async ([roger, verbal, kint]) => {
 
         ${testMint}
 
+        ${expectLimited}
         expect(id).to.be.equal(1)
-        expect(limited).to.be.equal(5)
         expect(tokenURI).to.be.equal('json-url')
         expect(ownerOfOne).to.be.equal(${adminMint ? 'verbal' : 'kint'})
         expect(name).to.be.equal('${name}')
@@ -76,7 +86,12 @@ contract('${name}', async ([roger, verbal, kint]) => {
     })
 })`
 }
-
+export const createNFTMigration = (solidityGenerator: ISolidityGenrator) => {
+    return `const ${solidityGenerator.name} = artifacts.require('${solidityGenerator.name}')
+module.exports = function(deployer, network, accounts) {
+    deployer.deploy(${solidityGenerator.name}, { from: accounts[0] })
+}`
+}
 /**
  * @param limited - Limited amount on the NFT token
  * @returns line of solidity code for limited

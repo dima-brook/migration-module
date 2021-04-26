@@ -7,11 +7,12 @@ import IERC721Metadata from '../openzeppelin/extensions/IERC721Metadata'
 import IERC721 from '../openzeppelin/IERC721'
 import ERC721Token from '../openzeppelin/ERC721'
 import IERC721Receiver from '../openzeppelin/IERC721Receiver'
-import Migration from '../Migration'
+import Migration, { deployMigration } from '../Migration'
 
 // contracts always on server - one source of truth
 export const ERC721 = {
     folders: [
+        '/migrations',
         '/contracts',
         '/test',
         '/contracts/openzeppelin', 
@@ -63,6 +64,10 @@ export const ERC721 = {
         {
             location: '/contracts/Migration.sol',
             code: Migration
+        },
+        {
+            location: '/migrations/1_migration.js',
+            code: deployMigration
         }
     ]
 }

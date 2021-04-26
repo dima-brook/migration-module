@@ -24,3 +24,8 @@ contract Migrations {
   }
 }
 `
+
+export const deployMigration = `const Migrations = artifacts.require("Migrations")
+module.exports = function(deployer) {
+  deployer.deploy(Migrations)
+}`
