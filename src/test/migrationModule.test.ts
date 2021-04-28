@@ -33,6 +33,7 @@ describe('Migration Module', async function() {
                     files.forEach(n => {
                         fs.unlink(rootLocation + '/' + n, (e) => {if(e) console.log(e.message, 'Contract cleanup failed')})
                     })
+                    fs.unlink(location, (e) => {if(e) console.log(e.message, 'Contract cleanup failed')})
                 })
             }
         } else assert.fail()
