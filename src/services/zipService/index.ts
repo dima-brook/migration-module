@@ -17,7 +17,7 @@ export class ZipService {
                     fs.rmdirSync(location, {recursive: true})
                     res(zip)
                 })
-                archive.on('error', function(err){
+                archive.on('error', function(err) {
                     rej()
                 })
                 archive.pipe(output)
@@ -28,4 +28,5 @@ export class ZipService {
             }
         })
     }
+
 }

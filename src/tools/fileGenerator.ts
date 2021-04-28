@@ -13,7 +13,7 @@ export interface GeneratorConfig {
     libs: ILib[]
 }
 
-export const generator = async (files: GeneratorConfig): Promise<string | undefined> => {
+export const generator = async (files: GeneratorConfig, zip?: boolean): Promise<string | undefined> => {
     const { libs, folders } = files
     const publicFolder = path.resolve(__dirname + '../../../public')
     const folderName = uuidv4()
@@ -26,10 +26,15 @@ export const generator = async (files: GeneratorConfig): Promise<string | undefi
         const { code, location } = lib
         fs.writeFileSync(loc + location, code)
     }
-    try {
-        const fileLocation = await ZIP.zip(loc)
-        return fileLocation
-    } catch (err) {
-        return undefined
+    if(zip) {
+        try {
+            if(zip) {
+                const fileLocation = await ZIP.zip(loc)
+                return fileLocation
+            }
+        } catch (err) {
+            return undefined
+        }
     }
+    return loc
 }

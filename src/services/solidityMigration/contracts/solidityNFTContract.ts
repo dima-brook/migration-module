@@ -56,10 +56,10 @@ export const createNFTTest = (solidityGenerator: ISolidityGenrator) => {
         adminMint,
         limited
     } = solidityGenerator
-    const testMint = `await testContract.mint(${adminMint ? 'verbal, ' : ''}'json-url')`
+    const testMint = `await testContract.mint(${!adminMint ? 'verbal, ' : ''}'json-url')`
     const expectLimited = `expect(limited).to.be.equal(${limited})`
-    return `
-const { expect } = require('chai')
+    return `const { expect } = require('chai')
+const web3 = require('web3')
 
 const ${name} = artifacts.require('./${name}.sol')
 require('chai')
@@ -70,22 +70,27 @@ contract('${name}', async ([roger, verbal, kint]) => {
         let testContract = await ${name}.deployed( { from: roger })
         const name = await testContract.name()
         const symbol = await testContract.symbol()
-        const ownerOfOne = await testContract.ownerOf(1)
-        const tokenURI = await testContract.tokenURIs(1)
-        const id = await testContract.id()
-        const limited = await testContract.limited()
 
         ${testMint}
+
+        const ownerOfOne = await testContract.ownerOf(1)
+        const tokenURI = await testContract.tokenURIs(1)
+
+        let id = await testContract.id()
+        let limited = await testContract.limited()
+        id = parseInt(web3.utils.fromWei(id, "wei" ))
+        limited = parseInt(web3.utils.fromWei(limited, "wei" ))
 
         ${expectLimited}
         expect(id).to.be.equal(1)
         expect(tokenURI).to.be.equal('json-url')
-        expect(ownerOfOne).to.be.equal(${adminMint ? 'verbal' : 'kint'})
+        expect(ownerOfOne).to.be.equal(${!adminMint ? 'verbal' : 'kint'})
         expect(name).to.be.equal('${name}')
         expect(symbol).to.be.equal('${symbol}')
     })
 })`
 }
+
 export const createNFTMigration = (solidityGenerator: ISolidityGenrator) => {
     return `const ${solidityGenerator.name} = artifacts.require('${solidityGenerator.name}')
 module.exports = function(deployer, network, accounts) {
