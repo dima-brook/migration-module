@@ -31,9 +31,9 @@ describe('Migration Module', async function() {
                     if(err) console.log(err.message)
                     else console.log(stdout)
                     files.forEach(n => {
-                        fs.unlink(rootLocation + '/' + n, (e) => {if(e) console.log(e.message, 'Contract cleanup failed')})
+                        fs.rmdir(rootLocation + '/' + n, {recursive: true}, (e) => {if(e) console.log(e.message, 'Contract cleanup failed')})
                     })
-                    fs.unlink(location, (e) => {if(e) console.log(e.message, 'Contract cleanup failed')})
+                    fs.rmdir(location, {recursive: true}, (e) => {if(e) console.log(e.message, 'Contract cleanup failed')})
                 })
             }
         } else assert.fail()
