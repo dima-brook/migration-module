@@ -1,4 +1,3 @@
-import * as fs from 'fs'
 import solidityContractGenerator from './contracts/solidityContractGenerator'
 import solidityMarketplaceContract from './contracts/solidityMarketplaceContract'
 
