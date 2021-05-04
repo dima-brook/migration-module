@@ -18,4 +18,5 @@ export interface IAppModel extends Model<IAppDocument> {
     removeById(id: ObjectId): Promise<boolean>
     updateById(id: ObjectId, doc: IApp): Promise<IAppDocument>
     createNew(doc: IApp): Promise<IAppDocument>
+    getByUserId(userId: ObjectId): Promise<IAppDocument[]>
 }
