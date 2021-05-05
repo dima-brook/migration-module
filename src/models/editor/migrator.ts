@@ -2,7 +2,7 @@ import { Document, model, Schema } from 'mongoose'
 import { ObjectId } from 'mongodb'
 import { IMigrator, IMigratorDocument, IMigratorModel } from './interfaces/migrator'
 import { MONGO_COLLECTIONS } from '../../config/keys'
-import { CustomDocumentBuild } from '../../tools/mongodb/documentDefaults'
+import { CustomDocumentBuild } from '../../@tools/mongodb/documentDefaults'
 
 export const docMigrator = {
     appId: { type: Schema.Types.ObjectId },

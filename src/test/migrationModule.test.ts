@@ -4,7 +4,7 @@ import { exec } from 'child_process'
 import { assert, expect } from 'chai'
 import { MigrationModule } from '../services/migrationModule'
 
-import { generator, GeneratorConfig, ILib } from '../tools/fileGenerator'
+import { generator, GeneratorConfig, ILib } from '../@tools/fileGenerator'
 import { ARRAY, STRING, testGenerator } from './testingLets'
 const MIGRATION_MODULE = new MigrationModule(testGenerator)
 const rootLocation = path.resolve(__dirname + '../../../')
