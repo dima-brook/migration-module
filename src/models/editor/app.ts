@@ -17,9 +17,8 @@ export const schema = CustomDocumentBuild(docApp)
 
 schema.statics.getByUserId = async function getByUserId(userId: ObjectId) {
     const query = this.find({ userId })
-    return query.exec().then((table: IAppDocument[]) => (table && table[0] ? table : undefined))
+    return query.exec().then((apps: IAppDocument[]) => (apps && apps[0] ? apps : undefined))
 }
-
 
 const App: IAppModel = model<IAppDocument, IAppModel>(MONGO_COLLECTIONS.Apps, schema)
 export default App

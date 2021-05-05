@@ -15,6 +15,12 @@ export const schema = CustomDocumentBuild(docMigrator)
 /**
  * MODEL Migrator, used for interactions with MongoDB
  */
+
+ schema.statics.getByAppId = async function getByAppId(appId: ObjectId) {
+    const query = this.find({ appId })
+    return query.exec().then((migrators: IMigratorDocument[]) => (migrators && migrators[0] ? migrators : undefined))
+}
+
 const Migrator: IMigratorModel = model<IMigratorDocument, IMigratorModel>(MONGO_COLLECTIONS.Migrators, schema)
 export default Migrator
 export {
