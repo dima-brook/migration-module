@@ -1,14 +1,15 @@
 import { ISolidityGenrator } from '../types'
+
 const MARKETPLACE_STATUS_OPEN = 'Open'
 const MARKETPLACE_STATUS_CLOSED = 'Closed'
+
 export default (solidityGenerator: ISolidityGenrator) => {
     return marketplace(solidityGenerator)
 }
 
 const marketplace = (solidityGenerator: ISolidityGenrator) => {
     const { name, royalties } = solidityGenerator
-    return `
-// SPDX-License-Identifier: MIT
+    return `// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
 
