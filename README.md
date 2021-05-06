@@ -4,9 +4,11 @@
 
 Generate ERC721 Solidity smart contract and test.
 ```terminal
-- Yarn install
-- Download [Ganache](https://www.trufflesuite.com/ganache)
-- Yarn test
+Yarn install
+```
+Download [Ganache](https://www.trufflesuite.com/ganache) and run
+```terminal
+Yarn test
 ```
 
 Generate ERC721 Move smart contract and test.
