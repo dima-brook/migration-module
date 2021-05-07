@@ -1,6 +1,6 @@
-node_modules
-lib
-public/*
-test
-contracts
-migrations
+/node_modules
+/lib
+/public/*
+/test
+/contracts
+/migrations
