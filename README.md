@@ -20,3 +20,4 @@ Generate ERC721 Rust smart contract and test
 ```terminal
 TBD
 ```
+<img src="https://xp.network/2@4.png" />
