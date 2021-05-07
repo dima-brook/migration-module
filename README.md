@@ -30,16 +30,16 @@ Currently you can view the ready XP.network NFT Move ERC721 standard module unde
 src
 │   
 └───services
-	│    
-   	└───moveMigration
+    │    
+    └───moveMigration
+	│   
+	└───moveMigration
 	    │   
-	    └───moveMigration
-	        │   
-		└───contracts
+	    └───contracts
+		│   
+		└───modules
 		    │   
-		    └───modules
-			│   
-			└───MV721.ts
+		    └───MV721.ts
 ```
 
 Generate ERC721 Rust smart contract and test
