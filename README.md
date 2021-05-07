@@ -33,13 +33,11 @@ src
     │    
     └───moveMigration
 	│   
-	└───moveMigration
+	└───contracts
 	    │   
-	    └───contracts
+	    └───modules
 		│   
-		└───modules
-		    │   
-		    └───MV721.ts
+		└───MV721.ts
 ```
 
 Generate ERC721 Rust smart contract and test
