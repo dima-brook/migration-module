@@ -1,4 +1,14 @@
-# XP.network Migration Module
+
+# Explanation
+In this repo you will find the XP.network Migration Module which is an API endpoint that receives
+1. NFT Use Case
+2. Business Details
+3. Designated Blockchains
+4. Compiled/Human-Readable
+
+It responds with production ready smart contracts.
+
+### Tests
 
 <img alt="Logo" align="right" src="https://pbs.twimg.com/profile_images/1383064571427094532/wm13q76p_400x400.jpg" width="20%" />
 
@@ -11,13 +21,31 @@ Download [Ganache](https://www.trufflesuite.com/ganache) and run
 yarn test
 ```
 
-Generate ERC721 Move smart contract and test.
+Generate ERC721 Move smart contract and test
 ```terminal
 TBD
+```
+Currently you can view the ready XP.network NFT Move ERC721 standard module under
+```
+src
+│   
+└───services
+	│    
+   └───moveMigration
+	   │   
+	   └───moveMigration
+		    │   
+			└───contracts
+				│   
+				└───modules
+					│   
+					└───MV721.ts
 ```
 
 Generate ERC721 Rust smart contract and test
 ```terminal
 TBD
 ```
+
+#### Scheme
 <img src="https://xp.network/2@4.png" />
