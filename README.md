@@ -10,7 +10,6 @@ It responds with production ready smart contracts.
 
 ### Tests
 
-<img alt="Logo" align="right" src="https://pbs.twimg.com/profile_images/1383064571427094532/wm13q76p_400x400.jpg" width="20%" />
 <img alt="Logo" align="right" src="https://avatars.githubusercontent.com/u/81907112?s=400&u=80a3bfd345f6a6cf4a0ae18438f9dd468ef0d860&v=4" width="20%" />
 
 
